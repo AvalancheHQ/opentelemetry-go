@@ -24,10 +24,11 @@ jobs:
           check-latest: true
           cache-dependency-path: "**/go.sum"
       - name: Run the benchmarks
-        uses: CodSpeedHQ/action@v4
+        uses: CodSpeedHQ/action@6a8e2b874c338bf81cc5e8be715ada75908d3871 # v4.3.4
         with:
           mode: walltime
           run: make benchmark-quick | tee output.txt
+          cache-instruments: false
       # - name: Run benchmarks
       #   run: make benchmark | tee output.txt
       # - name: Download previous benchmark data
