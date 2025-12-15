@@ -191,7 +191,7 @@ benchmark/%:
 		&& cd $* \
 		&& $(GO) list ./... \
 		| grep -v third_party \
-		| xargs $(GO) test -run=xxxxxMatchNothingxxxxx -bench=. $(ARGS)
+		| xargs -t -n1 $(GO) test -run=xxxxxMatchNothingxxxxx -bench=. $(ARGS)
 
 .PHONY: golangci-lint golangci-lint-fix
 golangci-lint-fix: ARGS=--fix
