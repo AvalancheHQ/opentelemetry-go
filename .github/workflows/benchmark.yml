@@ -23,8 +23,13 @@ jobs:
           go-version: ${{ env.DEFAULT_GO_VERSION }}
           check-latest: true
           cache-dependency-path: "**/go.sum"
+
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install the latest go-runner
+        run: cargo install --git https://github.com/CodSpeedHQ/codspeed-go/ --branch cod-1829-cannot-compile-certain-internal-packages
+          
       - name: Run the benchmarks
-        uses: CodSpeedHQ/action@v4.4.1
+        uses: CodSpeedHQ/action@v4
         with:
           mode: walltime
           run: make benchmark-quick | tee output.txt
