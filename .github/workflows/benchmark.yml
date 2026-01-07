@@ -30,6 +30,8 @@ jobs:
           
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@v4
+        env: 
+          CODSPEED_GO_PKG_VERSION: cod-1829-cannot-compile-certain-internal-packages
         with:
           mode: walltime
           run: make benchmark-quick | tee output.txt
