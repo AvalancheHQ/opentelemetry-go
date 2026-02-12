@@ -39,11 +39,15 @@ jobs:
           go-version: ${{ env.DEFAULT_GO_VERSION }}
           check-latest: true
           cache-dependency-path: "**/go.sum"
+      # Allow building the runner
+      - run: rustup toolchain install
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@v4.10.1
         with:
           mode: walltime
           allow-empty: true
+          runner-version: branch:cod-2138-deduplicate-perf-maps-and-unwind_data
+          upload-url: ${{ secrets.CODSPEED_STAGING_UPLOAD_URL }}
           # CodSpeed overrides the default benchtime if we don't explicitly specify it.
           # Having this would avoid running benchmark for more than 1 hour.
           run: make benchmark/${{matrix.shard}} ARGS=-benchtime=1s
